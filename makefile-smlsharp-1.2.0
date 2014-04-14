@@ -1,9 +1,9 @@
 
-SMLSHARP = smlsharp
+SMLSHARP = smlsharp-1.2.0
 ifeq ($(OS),Windows_NT)
-	TARGETS = aobench-smlsharp.exe
+	TARGETS = aobench-smlsharp-1.2.0.exe
 else
-	TARGETS = aobench-smlsharp
+	TARGETS = aobench-smlsharp-1.2.0
 endif
 
 VPATH = .:smlnjlib
@@ -47,4 +47,3 @@ clean:
 	rm -f $(filter %.d,$(SRCS:.sml=.d))
 	rm -f $(addprefix smlnjlib/,$(OBJS))
 	rm -f aobench.o
-

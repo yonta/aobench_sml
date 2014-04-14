@@ -5,7 +5,7 @@ function bench () {
 	sml)
 		sml @SMLload=aobench-image aobench-sml.ppm
 		;;
-	gcc | mlton | smlsharp)
+	gcc | mlton | smlsharp-1.2.0 | smlsharp-2.0.0)
 		./aobench-${1} aobench-${1}.ppm
 		;;
 	*)
@@ -25,8 +25,13 @@ function build () {
 	mlton)
 		mlton -output aobench-mlton aobench.mlb
 		;;
-	smlsharp)
-		make -f makefile-smlsharp
+	smlsharp-1.2.0)
+		make -f makefile-smlsharp-1.2.0 clean
+		make -f makefile-smlsharp-1.2.0
+		;;
+	smlsharp-2.0.0)
+		make -f makefile-smlsharp-2.0.0 clean
+		make -f makefile-smlsharp-2.0.0
 		;;
 	*)
 		echo "unkown compiler [$1]"
@@ -38,7 +43,7 @@ function build () {
 # number of iteration
 N=1
 
-compiler=(gcc sml mlton smlsharp)
+compiler=(gcc sml mlton smlsharp-1.2.0 smlsharp-2.0.0)
 for (( i=0; i<${#compiler[@]}; i++ ))
 do
 	# check existence
@@ -54,4 +59,3 @@ do
 		echo "${compiler[$i]} is not found :("
 	fi
 done
-
